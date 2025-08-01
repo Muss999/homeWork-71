@@ -16,3 +16,10 @@ export interface TypeCartDish {
 export type TypeOrder = {
     [dishId: string]: number;
 };
+export type TypeOrderMutation = {
+    id: string;
+    order: TypeOrder;
+};
+export type TypeOrdersList = {
+    [orderId: string]: TypeOrder;
+};

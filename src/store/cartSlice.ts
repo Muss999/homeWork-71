@@ -1,6 +1,6 @@
 import type { TypeCartDish, TypeDishMutation } from "../types";
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import { addOrder } from "./cartThunk";
+import { addOrder } from "./orderThunk";
 
 interface CartState {
     cartDishes: TypeCartDish[];

@@ -5,7 +5,7 @@ import { clearCart, selectCartDishes } from "../../store/cartSlice.ts";
 import CartDishes from "./CartDishes.tsx";
 import { DELIVERY_COST } from "../../helpers/consts.ts";
 import type { TypeOrder } from "../../types";
-import { addOrder } from "../../store/cartThunk.ts";
+import { addOrder } from "../../store/orderThunk.ts";
 
 const Cart = () => {
     const cartDishes = useAppSelector(selectCartDishes);

@@ -4,6 +4,7 @@ import Home from "./containers/Home/Home";
 import DishesList from "./containers/DishesList/DishesList";
 import AddDish from "./containers/AddDish/AddDish";
 import EditDish from "./containers/EditDish/EditDish";
+import OrdersList from "./containers/OrdersList/OrdersList";
 
 const App = () => {
     return (
@@ -17,6 +18,7 @@ const App = () => {
                 ))}
                 <Route path="/admin/dishes/new" element={<AddDish />} />
                 <Route path="/admin/dishes/:id/edit" element={<EditDish />} />
+                <Route path="/admin/orders" element={<OrdersList />} />
                 <Route path="*" element={<h1>Not Found</h1>} />
             </Routes>
         </Layout>

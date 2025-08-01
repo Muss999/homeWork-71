@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, type Location } from "react-router-dom";
 import type { TypeDishMutation } from "../../types";
 import SpinnerButton from "../../components/Spinner/SpinnerButton";
 import type { MouseEventHandler } from "react";
@@ -11,7 +11,7 @@ interface Props {
 }
 
 const DishItem = ({ dish, removeDish, deleteLoading, addToCart }: Props) => {
-    const location = useLocation();
+    const location: Location = useLocation();
     const isAdmin = location.pathname.includes("/admin");
     const navigate = useNavigate();
 
