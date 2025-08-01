@@ -8,8 +8,8 @@ const NavbarAdmin = () => {
                     Turtle Pizza Admin
                 </Link>
                 <div className="d-flex gap-4">
-                    <Link to={"/admin/dishes/add"} className="btn btn-light">
-                        Add new contact
+                    <Link to={"/admin/dishes/new"} className="btn btn-light">
+                        Add new dish
                     </Link>
                     <Link to={"/"} className="btn btn-primary">
                         User Panel

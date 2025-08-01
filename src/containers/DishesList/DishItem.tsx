@@ -1,13 +1,19 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import type { TypeDishMutation } from "../../types";
+import SpinnerButton from "../../components/Spinner/SpinnerButton";
+import type { MouseEventHandler } from "react";
 
 interface Props {
     dish: TypeDishMutation;
+    removeDish: MouseEventHandler;
+    deleteLoading: boolean | string;
 }
 
-const DishItem = ({ dish }: Props) => {
+const DishItem = ({ dish, removeDish, deleteLoading }: Props) => {
     const location = useLocation();
     const isAdmin = location.pathname.includes("/admin");
+    const navigate = useNavigate();
+
     return (
         <div className="d-flex align-items-center border p-3 rounded justify-content-between w-100">
             <div className="d-flex gap-4 align-items-center">
@@ -27,10 +33,28 @@ const DishItem = ({ dish }: Props) => {
                 <strong>{dish.price} KGS</strong>
                 {isAdmin && (
                     <div className="d-flex gap-2">
-                        <button type="button" className="btn btn-warning">
+                        <button
+                            type="button"
+                            className="btn btn-warning"
+                            onClick={() =>
+                                navigate(`/admin/dishes/${dish.id}/edit`)
+                            }
+                        >
                             Edit
                         </button>
-                        <button type="button" className="btn btn-danger">
+                        <button
+                            type="button"
+                            className="btn btn-danger"
+                            onClick={removeDish}
+                            disabled={
+                                deleteLoading
+                                    ? deleteLoading === dish.id
+                                    : false
+                            }
+                        >
+                            {deleteLoading && deleteLoading === dish.id && (
+                                <SpinnerButton />
+                            )}
                             Delete
                         </button>
                     </div>
