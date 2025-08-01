@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const NavbarUser = () => {
     return (
-        <nav className="navbar bg-secondary mb-3" data-bs-theme="dark">
+        <nav className="navbar bg-warning mb-3" data-bs-theme="light">
             <div className="container d-f justify-content-between">
                 <Link to={"/"} className="navbar-brand">
                     Turtle Pizza

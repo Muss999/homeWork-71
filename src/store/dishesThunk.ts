@@ -1,28 +1,32 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import type { TypeDish, TypeDishesList, TypeDishMutation } from "../types";
 import axiosApi from "../axiosApi";
+import type { AppDispatch } from "../app/store";
+import { updateCart } from "./cartSlice";
 
 interface editDishParams {
     id: string;
     dish: TypeDish;
 }
 
-export const getDishes = createAsyncThunk<TypeDishMutation[]>(
-    "allDishes/get",
-    async () => {
-        const { data } = await axiosApi<TypeDishesList | null>(
-            "/dishes/allDishes.json"
-        );
-        let newDishes: TypeDishMutation[] = [];
-        if (data) {
-            newDishes = Object.keys(data).map((key) => ({
-                ...data[key],
-                id: key,
-            }));
-        }
-        return newDishes;
+export const getDishes = createAsyncThunk<
+    TypeDishMutation[],
+    undefined,
+    { dispatch: AppDispatch }
+>("allDishes/get", async (_, thunkAPI) => {
+    const { data } = await axiosApi<TypeDishesList | null>(
+        "/dishes/allDishes.json"
+    );
+    let newDishes: TypeDishMutation[] = [];
+    if (data) {
+        newDishes = Object.keys(data).map((key) => ({
+            ...data[key],
+            id: key,
+        }));
     }
-);
+    thunkAPI.dispatch(updateCart(newDishes));
+    return newDishes;
+});
 export const addDish = createAsyncThunk<void, TypeDish>(
     "allDishes/add",
     async (apiDish) => {

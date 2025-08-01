@@ -7,9 +7,10 @@ interface Props {
     dish: TypeDishMutation;
     removeDish: MouseEventHandler;
     deleteLoading: boolean | string;
+    addToCart: MouseEventHandler;
 }
 
-const DishItem = ({ dish, removeDish, deleteLoading }: Props) => {
+const DishItem = ({ dish, removeDish, deleteLoading, addToCart }: Props) => {
     const location = useLocation();
     const isAdmin = location.pathname.includes("/admin");
     const navigate = useNavigate();
@@ -31,7 +32,8 @@ const DishItem = ({ dish, removeDish, deleteLoading }: Props) => {
             </div>
             <div className="d-flex gap-5 justify-content-between align-items-center">
                 <strong>{dish.price} KGS</strong>
-                {isAdmin && (
+
+                {isAdmin ? (
                     <div className="d-flex gap-2">
                         <button
                             type="button"
@@ -58,6 +60,14 @@ const DishItem = ({ dish, removeDish, deleteLoading }: Props) => {
                             Delete
                         </button>
                     </div>
+                ) : (
+                    <button
+                        type="button"
+                        className="btn btn-success"
+                        onClick={addToCart}
+                    >
+                        Add to cart
+                    </button>
                 )}
             </div>
         </div>

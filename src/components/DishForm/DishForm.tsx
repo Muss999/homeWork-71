@@ -35,14 +35,13 @@ const DishForm = ({
     const onSubmitHandler = (event: FormEvent) => {
         event.preventDefault();
         const dishName = dish.name.trim();
-        const dishImage = dish.image.trim();
+        let dishImage = dish.image.trim();
 
         if (!dishName) {
             alert("Name input is not valid");
             return;
         } else if (!dishImage) {
-            alert("Image input is not valid");
-            return;
+            dishImage = "https://cdn-icons-png.flaticon.com/512/857/857681.png";
         } else if (dish.price === 0) {
             alert("Price is 0!");
             return;
@@ -93,14 +92,13 @@ const DishForm = ({
                     className="form-control"
                     value={dish.image}
                     onChange={changeDish}
-                    required
                 />
             </div>
             <div className="mb-3">
                 <img
                     src={
                         dish.image ||
-                        "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                        "https://cdn-icons-png.flaticon.com/512/857/857681.png"
                     }
                     alt={dish.name || "Preview"}
                     className="img-thumbnail"

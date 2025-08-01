@@ -8,6 +8,7 @@ import {
 } from "../../store/dishesSlice";
 import Spinner from "../../components/Spinner/Spinner";
 import DishItem from "./DishItem";
+import { addDish } from "../../store/cartSlice";
 
 const DishesList = () => {
     const dispatch = useAppDispatch();
@@ -38,6 +39,7 @@ const DishesList = () => {
                             key={dish.id}
                             removeDish={() => removeDish(dish.id)}
                             deleteLoading={deleteLoading}
+                            addToCart={() => dispatch(addDish(dish))}
                         />
                     ))}
                 </div>
